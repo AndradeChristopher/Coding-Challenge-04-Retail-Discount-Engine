@@ -66,3 +66,43 @@ else if (customerType === "senior") {
 else {
     extraDiscount = 0; //no/invalid selection
 }
+
+for (let customer = 1; customer <= 3; customer++) {
+
+    let totalCost = 0;
+
+    //buying each item
+    for (const product of products) {
+
+        if (product.inventory > 0) {
+            totalCost += product.price;
+            product.inventory--;
+        }
+    }
+
+    //Including discount:
+    totalCost *= (1 - extraDiscount);
+
+    console.log(
+        `Customer ${customer} Total: $${totalCost.toFixed(2)}`
+    );
+}
+
+//summary
+console.log("\nSingle Product Details:");
+
+for (const key in products[0]) {
+    console.log(`${key}: ${products[0][key]}`);
+}
+
+//final product info/totals 
+console.log("\nUpdated Product Information:");
+
+for (const product of products) {
+
+    console.log("---");
+
+    for (const [key, value] of Object.entries(product)) {
+        console.log(`${key}: ${value}`);
+    }
+}
